@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Namens Manager</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f6f8;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 50px;
+        }
+
+        .container {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            padding: 10px;
+            font-size: 16px;
+            width: 220px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px 14px;
+            font-size: 14px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            background: #2d89ef;
+            color: white;
+        }
+
+        ul {
+            margin-top: 20px;
+            padding: 0;
+            width: 300px;
+        }
+
+        li {
+            list-style: none;
+            background: white;
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <input id="inputName" placeholder="Name eingeben">
+        <button id="addBtn">Hinzufügen</button>
+    </div>
+
+    <ul id="liste"></ul>
+
+    <script>
+        let namen = [];
+
+        function formatName(name) {
+            return name.trim();
+        }
+
+        function addName() {
+            const input = document.querySelector("#inputName");
+            let name = input.value;
+
+            if (!name) return;
+
+            namen[namen.length] = formatName(name);
+
+            input.value = "";
+            anzeigen();
+        }
+
+        function anzeigen() {
+            const liste = document.getElementById("liste");
+            liste.innerHTML = "";
+
+            namen.forEach(function (eintrag) {
+                const li = document.createElement("li");
+                li.textContent = eintrag;
+                liste.appendChild(li);
+            });
+        }
+
+        // Event statt inline onclick
+        document.getElementById("addBtn").addEventListener("click", addName);
+
+        // Enter-Taste hinzufügen
+        document.getElementById("inputName").addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                addName();
+            }
+        });
+
+        // TODO:
+        // delete funktion
+        // replace funktion
+        // bessere string formatierung
+        // array komplett löschen
+
+    </script>
+
+</body>
+
+</html>

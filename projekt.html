@@ -36,6 +36,11 @@
             cursor: pointer;
             background: #2d89ef;
             color: white;
+            margin-left: 5px;
+        }
+
+        button:hover {
+            background: #1b5fbf;
         }
 
         ul {
@@ -51,6 +56,20 @@
             margin-bottom: 8px;
             border-radius: 6px;
         }
+
+        li button {
+            padding: 5px 8px;
+            font-size: 12px;
+        }
+
+        body button:last-child {
+            margin-top: 15px;
+            background: #444;
+        }
+
+        body button:last-child:hover {
+            background: #222;
+        }
     </style>
 </head>
 
@@ -63,18 +82,28 @@
 
     <ul id="liste"></ul>
 
+    <button onclick="clearAll()">Alle löschen</button>
+
     <script>
+
         let namen = [];
 
         function formatName(name) {
-            return name.trim();
+            name = name.trim();
+
+            let erster = name.charAt(0).toUpperCase();
+            let rest = name.slice(1).toLowerCase();
+
+            return erster + rest;
         }
 
         function addName() {
             const input = document.querySelector("#inputName");
             let name = input.value;
 
-            if (!name) return;
+            name = name.trim();
+
+            if (name == "") return;
 
             namen[namen.length] = formatName(name);
 
@@ -82,32 +111,64 @@
             anzeigen();
         }
 
+        function deleteName(index) {
+            namen.splice(index, 1);
+            anzeigen();
+        }
+
+        function replaceName(index) {
+            let name = prompt("Neuen Namen eingeben:");
+
+            if (name == null) return;
+
+            name = name.trim();
+
+            if (name == "") return;
+
+            namen[index] = formatName(name);
+            anzeigen();
+        }
+
+        function clearAll() {
+            namen = [];
+            anzeigen();
+        }
+
         function anzeigen() {
             const liste = document.getElementById("liste");
             liste.innerHTML = "";
 
-            namen.forEach(function (eintrag) {
+            for (let i = 0; i < namen.length; i = i + 1) {
+
                 const li = document.createElement("li");
-                li.textContent = eintrag;
+                li.textContent = namen[i];
+
+                const replaceBtn = document.createElement("button");
+                replaceBtn.textContent = "Edit";
+                replaceBtn.onclick = function () {
+                    replaceName(i);
+                };
+
+                const deleteBtn = document.createElement("button");
+                deleteBtn.textContent = "X";
+                deleteBtn.onclick = function () {
+                    deleteName(i);
+                };
+
+                li.appendChild(replaceBtn);
+                li.appendChild(deleteBtn);
+
                 liste.appendChild(li);
-            });
+            }
         }
 
-        // Event statt inline onclick
         document.getElementById("addBtn").addEventListener("click", addName);
 
-        // Enter-Taste hinzufügen
         document.getElementById("inputName").addEventListener("keypress", function (e) {
-            if (e.key === "Enter") {
+            if (e.key == "Enter") {
                 addName();
             }
         });
-
-        // TODO:
-        // delete funktion
-        // replace funktion
-        // bessere string formatierung
-        // array komplett löschen
 
     </script>
 

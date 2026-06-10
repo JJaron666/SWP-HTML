@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<title>Simpsons Sitzplan</title>
+<style>
+
+    body {
+
+      font-family: Arial, sans-serif;
+
+      background-color: #eeeeee;
+
+    }
+
+    #rowone {
+
+      background-color: orange;
+
+      padding: 20px;
+
+      margin: 20px;
+
+      display: flex;
+
+      justify-content: space-around;
+
+    }
+
+    #rowtwo {
+
+      background-color: blue;
+
+      padding: 20px;
+
+      margin: 20px;
+
+      display: flex;
+
+      justify-content: space-around;
+
+    }
+
+    .place {
+
+      background-color: yellow;
+
+      width: 120px;
+
+      text-align: center;
+
+      padding: 10px;
+
+      margin: 5px;
+
+    }
+
+    .place img {
+
+      width: 80px;
+
+      height: 100px;
+
+      cursor: pointer;
+
+    }
+
+    .name {
+
+      font-weight: bold;
+
+      margin-top: 5px;
+
+    }
+</style>
+</head>
+<body onload="start()">
+<h1>Simpsons Sitzplan</h1>
+<div id="rowone"></div>
+<div id="rowtwo"></div>
+<script>
+
+    var figuren = [
+
+      "apu", "barney", "bart", "charles", "glancy",
+
+      "grandpa", "hibbert", "homer", "krusty", "marge"
+
+    ];
+
+    var ausgeblendet = false;
+
+    function start() {
+
+      var reihe1 = "";
+
+      var reihe2 = "";
+
+      for (var i = 0; i < figuren.length; i++) {
+
+        var figur = figuren[i];
+
+        var divCode =
+
+          '<div class="place">' +
+
+            '<img src="images/' + figur + '.png" id="' + figur + '" onclick="bildKlick(this.id)">' +
+
+            '<div class="name">' + figur + '</div>' +
+
+          '</div>';
+
+        if (i < 5) {
+
+          reihe1 += divCode;
+
+        } else {
+
+          reihe2 += divCode;
+
+        }
+
+      }
+
+      document.getElementById("rowone").innerHTML = reihe1;
+
+      document.getElementById("rowtwo").innerHTML = reihe2;
+
+    }
+
+    function bildKlick(id) {
+
+      for (var i = 0; i < figuren.length; i++) {
+
+        var bild = document.getElementById(figuren[i]);
+
+        if (ausgeblendet == false) {
+
+          if (figuren[i] != id) {
+
+            bild.style.visibility = "hidden";
+
+          }
+
+        } else {
+
+          bild.style.visibility = "visible";
+
+        }
+
+      }
+
+      ausgeblendet = !ausgeblendet;
+
+    }
+</script>
+</body>
+</html>
+ 

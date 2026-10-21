@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="pegaphant.css">
+</head>
+
+<body>
+     <img src="ll.png" id="pegaphant" alt="pegaphant">
+     
+    <script>
+        const worldX = 1000 // Welt in X Richtung 
+        const worldY = 1000 // Welt in Y Richtung
+        let ele_name = "mali";
+        let ele_farbe = "schwarz";
+        let ele_geschlecht = "m";
+        let ele_position_x = 0;
+        let ele_position_y = 1;
+        let ele_hoehe = 230; //cm
+        let ele_gewicht = 70; //kg
+        let ele_alter = 69; //Jahre
+        let ele_fluegellaenge = 130//cm
+        let ele_breite = 400 //cm
+        let ele_geschwindigkeit = 30; //kmh
+        let ele_istamfliegen = false;
+        let ele_istamkaken = false;
+        let ele_anzahl_fluegel = 2;
+
+        
+          function print_info() {
+            console.log(`name: ${ele_name} farbe: ${ele_farbe} geschlecht: ${ele_geschlecht} ${ele_alter} ${ele_anzahl_fluegel}`);
+            //console.log("alter: " + ele_alter + "breite : " + ele_breite)
+          }
+ 
+        function ele_fliegt() {
+            ele_geschwindigkeit = 2000//kmh
+            ele_istamfliegen = true;
+            ele_position_y = ele_position_y + 1;
+        }
+ 
+        // Starte die Animation
+ 
+        print_info();
+        ele_fliegt();
+        print_info();
+        
+          const elephant = document.getElementById('pegaphant')
+        let position = 80; // Startposition (80% von links)
+        let direction = -1; // Bewegungsrichtung (-1 = links, 1 = rechts)
+ 
+        
+        function animate() {
+            // Aktualisiere die Position
+            position += direction * 0.5; // Bewegungsgeschwindigkeit
+            // Ändere die Richtung, wenn der Elefant den Rand erreicht
+            if (position <= 10) {
+                direction = 1; // Bewege nach rechts
+            } else if (position >= 80) {
+                direction = -1; // Bewege nach links
+            }
+            // Setze die neue Position
+            elephant.style.left = `${position}%`;
+            // Führe die Animation erneut aus
+            requestAnimationFrame(animate);
+        }
+        animate()
+       
+
+    </script>
+</body>
+
+</html>

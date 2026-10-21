@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="pegaphant.css">
+</head>
+
+<body>
+    <img src="ll.png" id="pegaphant" alt="pegaphant">
+
+    <script>
+
+        // Dies ist ein Pegafant
+        let p_id = "pegaphant";
+        let p_posx = 0;
+        let p_posy = 0;
+        let p_direction = 1
+        let p_name = "pegaFANT"
+        // Ende vom Daten eines Pegafanten
+
+        //Ein Pegafant als Array
+        let pegaarray = [p_id, p_posx, p_posy, p_direction];
+        let gesamtPegaliste = [];
+        let bilder = ["ll.png", "dilwal.png", "dil.webp"]
+
+        function createImg(n) {
+            for (let x = 0; x < n; x++) {
+                let random_x = parseInt(Math.random() * 400) + 1;
+                let random_y = parseInt(Math.random() * 400) + 1;
+                let bildpfad = bilder[Math.floor(Math.random() * bilder.length)];
+
+
+                let img = document.createElement("img");
+                img.src = bildpfad;
+                img.className = "pegaclass";
+                img.style.left = pegaarray[1];
+                img.style.top = parseInt(Math.random() * 400) + 1 + "px";
+                img.id = "id" + n;
+                document.body.appendChild(img);
+                gesamtPegaliste.push(["id" + n, random_x, 0, 1, "Pegafant"]);
+
+            }
+        }
+
+        createImg(10)
+        function animatearray() {
+            for (let x = 0; x < gesamtPegaListe.length; x++) {
+                //hole id für erste grafik
+                let idbild = gesamtPegaliste[x][0];
+                let bild_x = gesamtPegaliste[x][1];
+                let bild_y = gesamtPegaliste[x][2];
+                let bild_dir = gesamtPegaliste[x][3];
+
+                const elephant = document.getElementById(gesamtPegaliste[x][0]);
+                //gehe rechts
+                if(bild_dir == 1) bild_x = bild_x + 2;
+                if(bild_dir == -1) bild_x = bild_x + -2;
+                if(bild_dir > 1000) {
+                    bild_dir = -1;
+                }
+
+            }
+        }
+        function animatearray() {
+            const elephant = document.getElementById('pegaphant')
+            // Aktualisiere die Position
+            gesamtPegaliste[x][1] += gesamtPegaliste[0][3] * 0.5; // Bewegungsgeschwindigkeit
+            // Ändere die Richtung, wenn der Elefant den Rand erreicht
+            if (gesamtPegaliste[x][1] <= 10) {
+                gesamtPegaliste[x][3] = 100; // Bewege nach rechts
+            } else if (gesamtPegaliste[x][1] >= 400) {
+                gesamtPegaliste[x][3] = -1; // Bewege nach links
+            }
+            // Setze die neue Position
+            elephant.style.left = `${gesamtPegaliste[x][1]}px`;
+            // Führe die Animation erneut aus
+            requestAnimationFrame(animatearray);
+        }
+        //animatearray
+
+
+    </script>
+</body>
+
+</html>

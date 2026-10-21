@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Deno: Run Current File",
+      "cwd": "${workspaceFolder}",
+      "runtimeExecutable": "deno",
+      "runtimeArgs": ["run", "-A", "--inspect-wait"],
+      "args": ["${file}"],
+      "outputCapture": "std",
+      "attachSimplePort": 9229
+    }
+  ]
+}

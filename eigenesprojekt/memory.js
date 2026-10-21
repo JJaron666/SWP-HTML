@@ -95,4 +95,4 @@ function unflipCards() {
 function resetBoard() {
     [firstCard, secondCard] = [null, null];
     lockBoard = false;
-}
+} 

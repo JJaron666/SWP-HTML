@@ -1,0 +1,27 @@
+#pegaphant_img {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
+
+.pegaclass {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+}
+
+#panzer {
+    position: absolute;
+    width: 120px;
+    left: 200px;
+    bottom: 10px;
+}
+
+
+.rakete {
+    position: absolute;
+    width: 30px;
+    height: 60px;
+    object-fit: contain;
+    z-index: 1000;
+}
